@@ -32,6 +32,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -220,14 +221,11 @@ public class Dictionary {
 		_MainDict = new DictSegment((char)0);
 
 		//读取主词典文件
-        File file= new File(configuration.getDictRoot(), Dictionary.PATH_DIC_MAIN);
+        //File file= new File(configuration.getDictRoot(), Dictionary.PATH_DIC_MAIN);
 
-        InputStream is = null;
-        try {
-            is = new FileInputStream(file);
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
+        InputStream is = getClass().getResourceAsStream("main.dic");;
+        
+
         
 		try {
 			BufferedReader br = new BufferedReader(new InputStreamReader(is , "UTF-8"), 512);
@@ -385,14 +383,9 @@ public class Dictionary {
         _StopWords = new DictSegment((char)0);
 
         //读取主词典文件
-        File file= new File(configuration.getDictRoot(), Dictionary.PATH_DIC_STOP);
+        //File file= new File(configuration.getDictRoot(), Dictionary.PATH_DIC_STOP);
 
-        InputStream is = null;
-        try {
-            is = new FileInputStream(file);
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
+        InputStream is = getClass().getResourceAsStream("stopword.dic");
 
         try {
             BufferedReader br = new BufferedReader(new InputStreamReader(is , "UTF-8"), 512);
@@ -426,6 +419,7 @@ public class Dictionary {
 			for(String extStopWordDictName : extStopWordDictFiles){
                 logger.info("[Dict Loading]" + extStopWordDictName);
 
+                File file = null;
                 //读取扩展词典文件
                 file=new File(configuration.getDictRoot(), extStopWordDictName);
                 try {
@@ -493,13 +487,8 @@ public class Dictionary {
 		//建立一个量词典实例
 		_QuantifierDict = new DictSegment((char)0);
 		//读取量词词典文件
-        File file=new File(configuration.getDictRoot(),Dictionary.PATH_DIC_QUANTIFIER);
-        InputStream is = null;
-        try {
-            is = new FileInputStream(file);
-        } catch (FileNotFoundException e) {
-            logger.error("ik-analyzer",e);
-        }
+        //File file=new File(configuration.getDictRoot(),Dictionary.PATH_DIC_QUANTIFIER);
+        InputStream is = getClass().getResourceAsStream("quantifier.dic");
 		try {
 			BufferedReader br = new BufferedReader(new InputStreamReader(is , "UTF-8"), 512);
 			String theWord = null;
@@ -529,13 +518,13 @@ public class Dictionary {
     private void loadSurnameDict(){
 
         _SurnameDict = new DictSegment((char)0);
-        File file=new File(configuration.getDictRoot(),Dictionary.PATH_DIC_SURNAME);
-        InputStream is = null;
-        try {
-            is = new FileInputStream(file);
-        } catch (FileNotFoundException e) {
-            logger.error("ik-analyzer",e);
-        }
+        //File file=new File(configuration.getDictRoot(),Dictionary.PATH_DIC_SURNAME);
+        InputStream is = getClass().getResourceAsStream("surname.dic");
+//        try {
+//            is = new FileInputStream(file);
+//        } catch (FileNotFoundException e) {
+//            logger.error("ik-analyzer",e);
+//        }
         if(is == null){
             throw new RuntimeException("Surname Dictionary not found!!!");
         }
@@ -566,13 +555,13 @@ public class Dictionary {
     private void loadSuffixDict(){
 
         _SuffixDict = new DictSegment((char)0);
-        File file=new File(configuration.getDictRoot(),Dictionary.PATH_DIC_SUFFIX);
-        InputStream is = null;
-        try {
-            is = new FileInputStream(file);
-        } catch (FileNotFoundException e) {
-            logger.error("ik-analyzer",e);
-        }
+        //File file=new File(configuration.getDictRoot(),Dictionary.PATH_DIC_SUFFIX);
+        InputStream is = getClass().getResourceAsStream("suffix.dic");
+//        try {
+//            is = new FileInputStream(file);
+//        } catch (FileNotFoundException e) {
+//            logger.error("ik-analyzer",e);
+//        }
         if(is == null){
             throw new RuntimeException("Suffix Dictionary not found!!!");
         }
@@ -602,13 +591,13 @@ public class Dictionary {
     private void loadPrepDict(){
 
         _PrepDict = new DictSegment((char)0);
-        File file=new File(configuration.getDictRoot(),Dictionary.PATH_DIC_PREP);
-        InputStream is = null;
-        try {
-            is = new FileInputStream(file);
-        } catch (FileNotFoundException e) {
-            logger.error("ik-analyzer",e);
-        }
+        //File file=new File(configuration.getDictRoot(),Dictionary.PATH_DIC_PREP);
+        InputStream is = getClass().getResourceAsStream("preposition.dic");
+//        try {
+//            is = new FileInputStream(file);
+//        } catch (FileNotFoundException e) {
+//            logger.error("ik-analyzer",e);
+//        }
         if(is == null){
             throw new RuntimeException("Preposition Dictionary not found!!!");
         }

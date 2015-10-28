@@ -151,5 +151,13 @@
                 </executions>
             </plugin>
         </plugins>
+		 <resources>
+		  <resource>
+			<directory>${basedir}/src/main/java</directory>
+			<includes>
+			  <include>**/*.dic</include>
+			</includes>
+		  </resource>
+		</resources>
     </build>
 </project>
